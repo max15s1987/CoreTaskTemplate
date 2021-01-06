@@ -37,6 +37,9 @@ public class UserServiceImpl extends Util implements UserService {
 
     public void cleanUsersTable() {
         userDao.cleanUsersTable();
+    }
 
+    public void shutdown() {
+        userDao.shutdown();
     }
 }
