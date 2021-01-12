@@ -9,12 +9,14 @@ import java.util.List;
 
 public class UserDaoJDBCImpl extends Util implements UserDao {
 
-    Connection connection = getConnection();
+    private Connection connection;
 
     public UserDaoJDBCImpl() {
     }
 
     public void createUsersTable() {
+
+        openConnection();
 
         try (Statement statement = connection.createStatement()){
 
@@ -27,10 +29,12 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             ex.printStackTrace();
         }
 
-
+        closeConnection();
     }
 
     public void dropUsersTable() {
+
+        openConnection();
 
         try (Statement statement = connection.createStatement()){
 
@@ -39,9 +43,13 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
+        closeConnection();
     }
 
     public void saveUser(String name, String lastName, byte age) {
+
+        openConnection();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (NAME, LASTNAME, AGE) VALUES (?, ?, ?)")){
 
@@ -54,9 +62,13 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             throwables.printStackTrace();
             System.out.println("Такой таблицы не существует");
         }
+
+        closeConnection();
     }
 
     public void removeUserById(long id) {
+
+        openConnection();
 
         try (Statement statement = connection.createStatement()){
 
@@ -65,9 +77,13 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
+        closeConnection();
     }
 
     public List<User> getAllUsers() {
+
+        openConnection();
 
         List<User> users = new ArrayList<>();
 
@@ -89,10 +105,14 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             ex.printStackTrace();
         }
 
+        closeConnection();
+
         return users;
     }
 
     public void cleanUsersTable() {
+
+        openConnection();
 
         try (Statement statement = connection.createStatement()){
 
@@ -102,9 +122,16 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             System.out.println("Connection failed...");
             ex.printStackTrace();
         }
+
+        closeConnection();
     }
 
-    public void shutdown() {
+
+    public void openConnection() {
+        connection = getConnection();
+    }
+
+    public void closeConnection() {
         try {
             if (connection != null) {
                 connection.close();
@@ -113,4 +140,5 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             throwables.printStackTrace();
         }
     }
+
 }

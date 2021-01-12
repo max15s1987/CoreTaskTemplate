@@ -17,6 +17,6 @@ public interface UserDao {
 
     void cleanUsersTable();
 
-    void shutdown();
+
 
 }

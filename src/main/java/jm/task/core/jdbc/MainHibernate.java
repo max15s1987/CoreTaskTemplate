@@ -3,6 +3,7 @@ package jm.task.core.jdbc;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceHibImpl;
+import jm.task.core.jdbc.util.HibernateUtil;
 
 public class MainHibernate {
 
@@ -37,9 +38,10 @@ public class MainHibernate {
         }
 
         usH.cleanUsersTable();
-//        usH.dropUsersTable();
+        usH.dropUsersTable();
 
-        usH.shutdown();
+        HibernateUtil.shutdown();
+
     }
 
 }

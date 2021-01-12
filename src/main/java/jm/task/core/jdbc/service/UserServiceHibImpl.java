@@ -41,8 +41,4 @@ public class UserServiceHibImpl extends Util implements UserService {
         userDao.cleanUsersTable();
     }
 
-    @Override
-    public void shutdown() {
-        userDao.shutdown();
-    }
 }

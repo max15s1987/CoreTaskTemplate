@@ -35,7 +35,5 @@ public class Main {
 
         us.cleanUsersTable();
         us.dropUsersTable();
-
-        us.shutdown();
     }
 }
