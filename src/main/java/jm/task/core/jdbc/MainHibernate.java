@@ -11,7 +11,7 @@ public class MainHibernate {
 
         UserService usH = new UserServiceHibImpl();
 
-        usH.dropUsersTable();
+//        usH.dropUsersTable();
         usH.createUsersTable();
 
         User user1 = new User("Максим", "Петров", (byte) 33);
@@ -37,8 +37,8 @@ public class MainHibernate {
             System.out.println(user);
         }
 
-        usH.cleanUsersTable();
-        usH.dropUsersTable();
+//        usH.cleanUsersTable();
+//        usH.dropUsersTable();
 
         HibernateUtil.shutdown();
 

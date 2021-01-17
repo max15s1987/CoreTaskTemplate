@@ -24,6 +24,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
                                     "(ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
                                         "NAME VARCHAR(50), LASTNAME VARCHAR(50), AGE INT)");
 
+
         } catch (SQLException ex) {
             System.out.println("Connection failed...");
             ex.printStackTrace();
